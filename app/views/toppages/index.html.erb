@@ -1,13 +1,14 @@
 <% if logged_in? %>
-  <aside>
+  <aside class="col-md-4">
   <%= form_for(@micropost) do |f| %>
-    <%= f.text_area :content, class: "form-control"%>
+    <%= f.text_area :content, class: "form-control", rows: 5 %>
     <%= f.submit "投稿", class: 'btn btn-primary btn-block' %>
     
   <% end %>
   </aside>
-  
+  <div class="col-xs-8">
   <%= render 'microposts/microposts', microposts: @microposts %>
+  </div>
 <% else %>
 
 <div class="center jumbotron">

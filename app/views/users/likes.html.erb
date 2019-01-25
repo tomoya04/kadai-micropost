@@ -1,17 +1,21 @@
 <h3>いいねした投稿一覧</h3>
 
 <ul class = "media-list">
-   <% @microposts_like.each do |micropost_like| %>
-  <li class="media">
-      <div class="media-left">
-         <img src= "<%= gravatar_url(micropost_like.user, { size: 50}) %>" alt="" >
-      </div>
-      <div class="media-body">
-         <div>
-             <%= link_to micropost_like.user.name, user_path(micropost_like.user) %>
-             <span>投稿日時<%= micropost_like.created_at %></span>
-         </div>
-          <div>
-              <p><%= micropost_like.content %></p>
-          </div>
-<% end %>
+   <% @microposts_like.each do |micropost| %>
+      <li class="media">
+        <div class="media-left">
+          <img src= "<%= gravatar_url(micropost.user, { size: 50}) %>" alt="" >
+        </div>
+         <div class="media-body">
+           <div>
+             <%= link_to micropost.user.name, user_path(micropost.user) %>
+           <span>投稿日時<%= micropost.created_at %></span>
+           </div>
+            <div>
+              <p><%= micropost.content %></p>
+            </div>
+             
+              <%= render "favorites/likes",micropost: micropost %>
+         </li>
+    <% end %>
+</ul>

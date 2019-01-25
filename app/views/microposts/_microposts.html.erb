@@ -2,32 +2,21 @@
    <% microposts.each do |micropost| %>
   <li class="media">
       <div class="media-left">
-         <img src= "<%= gravatar_url(micropost.user, { size: 50}) %>" alt="" >
+         <img class="media-object img-rounded" src= "<%= gravatar_url(micropost.user, { size: 50}) %>" alt="" >
       </div>
       <div class="media-body">
          <div>
              <%= link_to micropost.user.name, user_path(micropost.user) %>
-             <span>投稿日時<%= micropost.created_at %></span>
+             <span class="text-muted">投稿日時<%= micropost.created_at %></span>
          </div>
           <div>
               <p><%= micropost.content %></p>
           </div>
           
-              <% if current_user.like?(micropost) %>
-                 <%= form_for(current_user.favorites.find_by(micropost_id: micropost.id),html: { method: :delete }) do |f| %>
-                 <%= hidden_field_tag :micropost_id, micropost.id %>
-                 <%= f.submit 'いいねをはずす', class: 'btn btn-xs'%>
-                 <% end %>
-              <% else %>
-                <%= form_for(current_user.favorites.build) do |f| %>
-                 <%= hidden_field_tag :micropost_id, micropost.id %>
-                 <%= f.submit 'いいね', class: 'btn btn-xs' %>
-                <% end %>
-              <% end %>
-            
+            <%= render "favorites/likes",micropost: micropost %>
           <div>
             <% if current_user == micropost.user %>
-            <%= link_to "削除", micropost, method: :delete, data: { confirm: "本当に？"},class: 'btn btn-danger btn-xs' %>
+            <%= link_to "削除", micropost, method: :delete, data: { confirm: "本当に？"},class: 'btn btn-warning btn-xs' %>
             <% end %> 
           </div>
       </div>

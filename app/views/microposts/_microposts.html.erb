@@ -12,8 +12,9 @@
           <div>
               <p><%= micropost.content %></p>
           </div>
-          
+          <div class ="like">
             <%= render "favorites/likes",micropost: micropost %>
+           </div> 
           <div>
             <% if current_user == micropost.user %>
             <%= link_to "削除", micropost, method: :delete, data: { confirm: "本当に？"},class: 'btn btn-warning btn-xs' %>

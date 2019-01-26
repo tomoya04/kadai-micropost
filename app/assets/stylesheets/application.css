@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.badge span{
+  margin-right: 30px;  
+}
+
+.like{
+  margin-bottom: 10px;
+}
